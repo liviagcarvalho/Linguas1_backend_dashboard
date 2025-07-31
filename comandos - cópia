@@ -1,0 +1,43 @@
+#BackEnd
+
+CRIAR AMBIENTE VISRTUAL
+Para criar um ambiente virtual, siga os passos abaixo:
+Abra o terminal ou prompt de comando; Navegue até o diretório do seu projeto (Você pode abrir a pasta pelo vscode e abrir o terminal do aplicativo também);Crie o ambiente virtual:
+    -execute:
+        ```bash
+        python3 -m venv venv
+        ```
+        ```bash
+        source venv/bin/activate
+        ```
+
+PARA TESTAR NO POSTMAN
+pip install "fastapi[standard]"
+pip install mongoengine
+
+fastapi run main.py
+
+ESTRUTURA
+todo_app(ou o nome que você deu ao projeto)/
+├── main.py (Arquivo principal da aplicação, onde vão estar as rotas e a inicialização do FastAPI)
+├── models/
+│   └── task.py (Modelo de dados da tarefa, onde você define a estrutura do documento no MongoDB, ou seja, quais serão os campos que uma tarefa terá)
+
+
+#FrontEnd
+Criar um novo projeto React com Vite:
+   npm create vite@latest todo-frontend --template react-ts
+
+   Isso criará uma nova pasta chamada `todo-frontend` com a estrutura básica de um projeto React usando TypeScript.
+
+   Navegue até a pasta do projeto:
+   ```bash
+    cd todo-frontend
+    npm install
+    npm run dev
+    ```
+
+Para interagir com o backend, usamos a função `fetch` do JavaScript para fazer requisições HTTP. As funções `fetchTasks`, `addTask`, `toggleTask` e `deleteTask` são responsáveis por buscar, adicionar, atualizar e deletar tarefas, respectivamente. A função `fetch` faz exatamente o que o Postman faz, mas de forma programática, ou seja, dentro do código. 
+Além isso, perceba que usamos async e await:
+- `async` é usado para declarar uma função assíncrona, ou seja, ela não vai bloquear o resto do código enquanto espera.
+- `await` é usado dentro das funções para esperar o resultado de uma operação demorada (como fetch ou acesso ao banco de dados).
