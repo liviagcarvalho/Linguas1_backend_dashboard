@@ -1,17 +1,53 @@
+# from fastapi import FastAPI
+# from fastapi.middleware.cors import CORSMiddleware
+# import pandas as pd
+
+# app = FastAPI()
+
+# # Permitir conexão com o React frontend
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["*"],  # Em produção, especifique o domínio
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
+
+# @app.get("/aulas")
+# def get_aulas():
+#     df = pd.read_csv("Aulas.csv")
+#     return df.to_dict(orient="records")
+
+# @app.get("/base")
+# def get_base():
+#     df = pd.read_csv("base_tratada_lingualab2 - cópia.csv")
+#     return df.to_dict(orient="records")
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from mongoengine import connect
-#from models.task import Task # Importa o modelo de dados da tarefa
+import pandas as pd
+
+from Homepage import router as homepage_router  # importe o router
 
 app = FastAPI()
 
-# Conexão com o MongoDB Atlas
-#connect(db="todo_app", host="sua_connection_string_aqui")
-
-# CORS (Não se preocupe com isso por enquanto, é uma configuração de segurança que permite que o frontend acesse a API)
+# Permitir conexão com o React frontend
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Suas rotas atuais
+@app.get("/aulas")
+def get_aulas():
+    df = pd.read_csv("Aulas.csv")
+    return df.to_dict(orient="records")
+
+@app.get("/base")
+def get_base():
+    df = pd.read_csv("base_tratada_lingualab2 - cópia.csv")
+    return df.to_dict(orient="records")
+
+# Inclua as rotas da Homepage (card de faturamento)
+app.include_router(homepage_router)
+
