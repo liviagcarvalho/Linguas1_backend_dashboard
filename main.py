@@ -21,6 +21,8 @@
 # def get_base():
 #     df = pd.read_csv("base_tratada_lingualab2 - cópia.csv")
 #     return df.to_dict(orient="records")
+
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
@@ -45,9 +47,11 @@ def get_aulas():
 
 @app.get("/base")
 def get_base():
-    df = pd.read_csv("base_tratada_lingualab2 - cópia.csv")
-    return df.to_dict(orient="records")
+    try:
+        df = pd.read_csv("base.csv")
+        return df.to_dict(orient="records")
+    except Exception as e:
+        return {"erro": str(e)}
 
-# Inclua as rotas da Homepage (card de faturamento)
-app.include_router(homepage_router)
+
 
