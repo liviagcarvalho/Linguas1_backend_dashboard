@@ -47,11 +47,8 @@ def get_aulas():
 
 @app.get("/base")
 def get_base():
-    try:
-        df = pd.read_csv("base.csv")
-        return df.to_dict(orient="records")
-    except Exception as e:
-        return {"erro": str(e)}
+    df = pd.read_csv("base.csv")
+    return df.to_dict(orient="records")
 
 
 
